@@ -8,8 +8,13 @@ def post_list(request):
                   'blog/post/list.html',
                   {'posts':posts})
 
-def post_detail(request, id):
+def post_detail(request, year, month, day, post):
     status = Post.Status.PUBLISHED
-    post = get_object_or_404(Post,id=id,status=status)
+    post = get_object_or_404(Post,
+                             slug=post,
+                             publish__year=year,
+                             publish__month=month,
+                             publish__day=day,
+                             status=status)
     template = 'blog/post/detail.html'
     return render(request, template, {'post': post})
