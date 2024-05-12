@@ -62,7 +62,7 @@ class Comment(models.Model):
     class Meta:
         ordering = ['created']
         indexes = [
-            models.index(fields=['created']),
+            models.Index(fields=['created']),
         ]
     
     def __str__(self):
